@@ -33,14 +33,14 @@ conf <- confusion(pred,testing$classe)
 
 confusionImage(conf,sort=F,numbers=T,ncols=11,names=c("Actual","Predicted"),cex.axis=NULL,
                grid.col=NULL)
-str(cm)
 
 
-
-
-confusionImage(x, y = NULL, labels = names(dimnames(x)), sort =F,
-               numbers = TRUE, digits = 0, mar = c(3.1, 10.1, 3.1, 3.1), cex = 1, asp = 1,
-               colfun, ncols = 41, col0 = FALSE, grid.col = "gray", ...)
-
-
-
+## Submission
+pml_write_files = function(x){
+    n = length(x)
+    for(i in 1:n){
+        filename = paste0("problem_id_",i,".txt")
+        write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+    }
+}
+pml_write_files(pred)
